@@ -9,7 +9,6 @@ from model.client import Client
 db_path = "database/"
 
 if not os.path.exists(db_path):
-
    os.makedirs(db_path)
 
 db_url = 'sqlite:///%s/db.sqlite3' % db_path

@@ -15,8 +15,7 @@ class Client(Base):
     created_at = Column(DateTime, default=datetime.now())
     updated_at = Column(DateTime, default=datetime.now())
 
-    def __init__(self, name:str, email:int, phone:float,
-                 document:Union[DateTime, None] = None):
+    def __init__(self, name:str, email:int, phone:float, document:Union[DateTime, None] = None):
         
         self.name = name
         self.email = email
