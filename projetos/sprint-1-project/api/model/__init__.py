@@ -4,6 +4,7 @@ from sqlalchemy import create_engine
 import os
 
 from model.base import Base
+from model.client import Client
 
 db_path = "database/"
 
