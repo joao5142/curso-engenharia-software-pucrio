@@ -30,7 +30,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 
 <ul>
     <li>
-      pip install -r requirements.txt
+      python3 -m pip install -r requirements.txt
     </li>
 </ul>
 
