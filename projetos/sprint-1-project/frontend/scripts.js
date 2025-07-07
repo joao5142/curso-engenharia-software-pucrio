@@ -19,9 +19,10 @@ async function fetchAllClients() {
         const data = await response.json()
 
         fillTableElementWithData(data.clients)
-
-        console.log(data)
+        fetchClientsQuantity()
+        verifyIfExistsClients()
     } catch (err) {
+        console.error(err)
         alert('Error ao buscar clientes')
     }
 
@@ -40,11 +41,10 @@ async function registerNewClient(formElement) {
             body: formData
         })
 
-
         fetchAllClients()
         registerClientDialogElement.close();
-        console.log(data)
     } catch (err) {
+        console.error(err)
         alert('Error ao registrar cliente')
     }
 
@@ -59,10 +59,8 @@ async function fetchClientsQuantity() {
         const data = await response.json()
 
         fillClientsQuantity(data.count)
-        verifyIfExistsClients()
-
-        console.log(data)
     } catch (err) {
+        console.error(err)
         alert('Error ao buscar a quantidade de clientes')
     }
 }
@@ -73,19 +71,16 @@ async function deleteClientById(clientId) {
             method: 'DELETE'
         })
 
-        await response.json()
-
-        fillClientsQuantity(data.count)
-
-        console.log(data)
+        await fetchAllClients()
     } catch (err) {
+        console.error(err)
         alert('Error ao deletar clientes')
     }
 }
 
 function verifyIfExistsClients() {
     const tbody = tableElement.querySelector("tbody");
-    const hasRows = tbody.querySelectorAll("tr").length > 0;
+    const hasRows = tbody.querySelectorAll("tr").length;
 
     if (!hasRows) {
         clientsNotExistsElement.classList.add('show')
@@ -97,7 +92,8 @@ function verifyIfExistsClients() {
 async function handleDeleteClient(clientTableRow) {
     console.log(clientTableRow)
     if (window.confirm("Confirmar deleção do cliente ?")) {
-        const clientIdElement = clientTableRow.closest('tr').querySelector('td[data-client-id]')
+        const clientTrElement =  clientTableRow.closest('tr')
+        const clientIdElement = clientTrElement.querySelector('td[data-client-id]')
 
         console.log(clientIdElement.innerText)
 
@@ -106,12 +102,15 @@ async function handleDeleteClient(clientTableRow) {
         }
 
         await deleteClientById(Number(clientIdElement.innerText))
-        clientTableRow.remove()
+        clientTrElement.remove()
         verifyIfExistsClients()
     }
 }
 
 function fillTableElementWithData(clients) {
+    const tbodyElement = tableElement.querySelector('tbody')
+    tbodyElement.innerHTML = ''
+
     clients.forEach(client => {
         const elementHTML = `  
         <tr>
@@ -123,7 +122,7 @@ function fillTableElementWithData(clients) {
             <td><i class="fa-solid fa-trash" onclick="handleDeleteClient(this)"></i></td>
         </tr>`
 
-        tableElement.querySelector('tbody').insertAdjacentHTML('afterbegin', elementHTML)
+       tbodyElement.insertAdjacentHTML('afterbegin', elementHTML)
     })
 }
 
@@ -148,4 +147,4 @@ registerClientFormElement.addEventListener('submit', event => {
 })
 
 // init data
-Promise.all(fetchAllClients(), fetchClientsQuantity())
+fetchAllClients()
