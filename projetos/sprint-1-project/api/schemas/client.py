@@ -39,6 +39,7 @@ def show_clients(clients: List[Client]) -> dict:
     clients_list = []
     for client in clients:
         clients_list.append({
+            "id": client.id,
             "name": client.name,
             "email": client.email,
             "document": client.document,
