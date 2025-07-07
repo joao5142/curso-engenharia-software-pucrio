@@ -5,6 +5,10 @@
     font-family: 'Nunito', sans-serif;
 }
 
+i{
+    cursor: pointer;
+}
+
 .logo{
     margin: 0 auto;
     margin-bottom: 5rem;
@@ -12,17 +16,26 @@
     display: block;
 }
 
-/* header */
-.main__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
-    margin-bottom: 2rem;
+#clients-not-exists{
+    display: none;
+    text-align: center;
+    margin-top: 1rem;
 }
 
-.main__header-button{
-    background-color: #1e56d9;
+#register-client-dialog{
+    border: none;
+
+    padding: 2rem;
+
+    border-radius: 1rem;
+}
+
+#clients-not-exists.show{
+    display: block;
+}
+
+
+.button{
     padding: 0.8rem  1.6rem;
 
     outline: 0;
@@ -36,6 +49,26 @@
 
     transition: scale 0.2s ease-in-out;
 }
+
+.button--blue{
+    background-color: #1e56d9;
+}
+
+.button--red{
+    background-color: #d9241e;
+}
+
+
+/* header */
+.main__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    margin-bottom: 2rem;
+}
+
+
 
 .main__header-button:hover{
     scale: 0.95;
@@ -54,4 +87,24 @@
 
 .main__table td{
     padding:0.6rem 0.6rem 0.6rem 0;
+}
+
+
+.form-client__field{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.form-client__field label{
+    margin-bottom: 0.3rem;
+}
+
+.form-client__field input {
+    outline: none;
+    border: none;
+
+    padding: 0.5rem;
+
+    border: 1px solid #ececec;
 }

@@ -21,11 +21,12 @@
 
     <main>
         <div class="main__header">
-            <div><strong>Usuarios totais </strong> : <span>12</span></div>
-            <button class="main__header-button">Adicionar</button>
+            <div><strong>Usuarios totais </strong> : <span id="clients-quantity">0</span></div>
+            <button id="add-client-button" class="button button--blue">Adicionar</button>
         </div>
-        <table class="main__table">
+        <table id="main-table" class="main__table">
             <thead>
+                <th>Id</th>
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Telefone</th>
@@ -33,16 +34,41 @@
                 <th>Actions</th>
             </thead>
             <tbody>
-                <tr>
-                    <td>Teste</td>
-                    <td>Teste</td>
-                    <td>Teste</td>
-                    <td>Teste</td>
-                    <td><i class="fa-solid fa-trash"></i></td>
-                </tr>
+              
             </tbody>
         </table>
+
+        <div id="clients-not-exists">Não Há Elementos Disponiveis</div>
     </main>
+
+    <dialog id="register-client-dialog">
+        <form id="register-client-form" class="form-client" method="dialog">
+            <div class="form-client__field">
+              <label for="client-name-input">Nome</label>
+              <input id="client-name-input" type="text" name="name"> 
+            </div>
+
+            <div class="form-client__field">
+              <label for="client-email-input">Email</label>
+              <input id="client-email-input" type="email" name="email"> 
+            </div>
+
+            <div class="form-client__field">
+              <label for="client-phone-input">Phone</label>
+              <input id="client-phone-input" type="tel" name="phone"> 
+            </div>
+
+            <div class="form-client__field">
+              <label for="client-document-input">Documento (RG/CPF)</label>
+              <input id="client-document-input" type="text" name="document"> 
+            </div>
+            
+            <menu>
+                <button type="button" id="cancel-register-client-button" class="button button--red">Cancelar</button>
+                <button type="submit" class="button button--blue">Registrar</button>
+            </menu>
+        </form>
+    </dialog>
     <script src="scripts.js"></script>
 </body>
 
