@@ -22,7 +22,11 @@ class GetClientSchema(BaseModel):
     """ Schema para pegar todos os clientes
     """
     client: ClientSchema
-        
+
+class GetClientsQuantitySchema(BaseModel):
+    """ Schema para pegar a quantidade de clientes
+    """
+    count: int
 
 class ClientParamsSchema(BaseModel):
     """ Schema para os parâmetros de exclusão de cliente

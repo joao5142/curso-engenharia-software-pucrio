@@ -104,6 +104,23 @@ def get_clients():
         logger.warning(f"Erro ao pegar clientes, {error_msg}")
         return {"message": error_msg}, 500
 
+@app.get('/clients/quantity', tags=[openapi_client_tag], responses={"200": GetClientsQuantitySchema , "400": ErrorSchema})
+def get_clients_quantity():
+    """Pega a quantidade de clientes da base de dados
+    """
+    try:
+        session = Session()
+
+        clients_count =  session.query(Client).count()
+        
+        return {"count": clients_count}, 200
+
+    except Exception as e:
+        logger.warning(f"Tracing  {e}")
+        error_msg = "Error ao buscar a quantidade de clientes do banco"
+        logger.warning(f"Erro ao pegar clientes, {error_msg}")
+        return {"message": error_msg}, 500
+
 
 @app.delete('/clients/<int:client_id>', tags=[openapi_client_tag], responses={"204": None,"404": ErrorSchema,"500": ErrorSchema}
 )
